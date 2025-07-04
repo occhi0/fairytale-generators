@@ -1,8 +1,7 @@
-# Nome del processo automatico, lo vedrai nella scheda "Actions" di GitHub
+# Nome del workflow che vedrai su GitHub
 name: Deploy to GitHub Pages
 
-# Trigger: fa partire il processo ogni volta che carichi ("push") nuovo codice
-# sul branch "main"
+# Fa partire l'azione ogni volta che fai un "push" sul branch "main"
 on:
   push:
     branches: [ "main" ]
@@ -16,13 +15,19 @@ permissions:
 # Lavori: definisce la sequenza di operazioni da eseguire
 jobs:
   deploy:
+    # AGGIUNGI QUESTA SEZIONE 'environment'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    # FINE DELLA SEZIONE AGGIUNTA
+
     runs-on: ubuntu-latest # Usa un server virtuale con Ubuntu
     steps:
       # 1. Scarica il codice dal tuo repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Installa Node.js (versione 18)
+      # 2. Installa Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -46,7 +51,7 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
-          
+
       # 7. Pubblica il sito
       - name: Deploy to GitHub Pages
         id: deployment
