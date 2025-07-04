@@ -99,12 +99,10 @@ LINEE GUIDA:
 
 IMPORTANTE: Scrivi SOLO la storia, senza titolo o formattazione aggiuntiva. Segui fedelmente lo stile di ${selectedAuthor?.label} nelle scelte linguistiche, nel ritmo e nell'approccio narrativo.`;
 
-      // Simula chiamata API per test
       // const response = await window.claude.complete(prompt);
       const response = `C'era una volta, in una foresta incantata dove i funghi brillavano di notte, un piccolo riccio di nome Leo. Leo era curioso e amava l'avventura, ma aveva una grande paura: il buio. Ogni sera, quando il sole tramontava, si rannicchiava nella sua tana e non osava uscire. Una notte, sentì un piccolo lamento. Era una lucciola di nome Lucy, la cui luce si era affievolita. Lucy spiegò che aveva perso la sua scintilla magica. Leo, nonostante la paura, sapeva di doverla aiutare. Prese un respiro profondo e, usando il suo nasino, seguì il profumo dei fiori di luna, gli unici che potevano riaccendere la luce di una lucciola. Passo dopo passo, si addentrò nel bosco buio, scoprendo che non era così spaventoso. Vide le stelle brillare tra i rami e sentì il canto rassicurante dei grilli. Trovò i fiori e Lucy tornò a brillare più forte di prima. Da quella notte, Leo capì che essere coraggiosi non significa non avere paura, ma aiutare un amico nonostante la paura.`;
       setStoryText(response);
       setCurrentStep(7);
-
     } catch (error) {
       console.error('Errore nella generazione della storia:', error);
       alert('Mi dispiace, c\'è stato un errore nella generazione della storia. Riprova.');
@@ -277,7 +275,7 @@ IMPORTANTE: Scrivi SOLO la storia, senza titolo o formattazione aggiuntiva. Segu
             <p className="text-gray-600">{stepInfo.subtitle}</p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
             {interests.map((interest) => (
               <button
                 key={interest}
